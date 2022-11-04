@@ -27,6 +27,10 @@
 *.lib
 
 # Executables
+*.x
 *.exe
 *.out
 *.app
+
+# Emacs temp
+*~
