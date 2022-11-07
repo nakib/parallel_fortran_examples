@@ -24,4 +24,5 @@ contains
        chunk_size = 1
     end if
   end subroutine distribution_map
+  
 end module data_distribution
