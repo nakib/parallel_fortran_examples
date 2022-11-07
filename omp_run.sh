@@ -1,6 +1,6 @@
 #!/bin/bash
 
-workdir="./omp_2x4"
+workdir="./omp_1x4"
 mkdir $workdir
 cd $workdir
 
