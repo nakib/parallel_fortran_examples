@@ -1,2 +1,2 @@
-# parallel_fortran_examples
-Some introductory example to illustrate parallel programming in modern Fortran.
+# Parallel Fortran Examples
+Some introductory examples to illustrate parallel programming in modern Fortran.

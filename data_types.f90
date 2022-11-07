@@ -50,18 +50,23 @@ contains
        call exit
     end if
 
-    !Serial
-    !dot = dot_product(A%vector, B%vector)
+    dot = 0.0_dp
 
     !CPU parallel
-    dot = 0.0_dp
     !$omp parallel do &
     !$omp private(i) shared(A, B) reduction(+ : dot)
     do i = 1, A%length
        dot = dot + A%vector(i)*B%vector(i)
     end do
 
-    !GPU parallel
-    !! TODO
+!!$    !GPU parallel
+!!$    !$omp target map(to: A, B) map(tofrom: dot)
+!!$    !$omp parallel do
+!!$    !$omp private(i) shared(A, B) reduction(+ : dot)
+!!$    do i = 1, A%length
+!!$       dot = dot + A%vector(i)*B%vector(i)
+!!$    end do
+!!$    !$omp end target
+
   end function dot
 end module data_types
