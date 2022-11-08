@@ -22,10 +22,10 @@ program parallel_dot_caf_omp_test
   allocate(data(chunk_size)[*])
   data = [(i, i = first, last)]/(N + 0.0_dp)
 
-  ! [1 2 3 ... N]/N
+  ! Distributed [1 2 3 ... N]/N
   call A%create(data)
 
-  ! [2 3 4 ... N + 1]/N
+  ! Distributed [2 3 4 ... N + 1]/N
   call B%create(data + 1.0_dp/N)
 
   numerical_result = A*B !<~ OMP parallel dot product
