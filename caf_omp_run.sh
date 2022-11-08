@@ -1,11 +1,11 @@
 #!/bin/bash
 
-workdir="./caf_omp_2x4"
+workdir="./caf_omp_4x36"
 mkdir $workdir
 cd $workdir
 
-let num_nodes=2
-let num_threads_per_node=4
+let num_nodes=4
+let num_threads_per_node=36
 let num_threads_tot=num_nodes*num_threads_per_node
 echo "Number of coarray images: " $num_nodes
 echo "Number of OMP threads/coarray image: " $num_threads_per_node
