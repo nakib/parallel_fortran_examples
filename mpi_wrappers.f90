@@ -9,8 +9,7 @@ module mpi_wrappers
   integer, parameter :: error_code_abort = 101
   integer, parameter :: root_rank = 0          ! Root process is always defined as rank 0
 
-  type mpi_info_type
-    integer :: comm = -1          !! communicator
+  type mpi_info_type         !! communicator
     integer :: rank = -1          !! rank
     integer :: procs = -1         !! number of processes
     logical :: is_root = .false.  !! process is root or not
@@ -33,15 +32,13 @@ module mpi_wrappers
 
     integer :: ierr
 
-    this%comm = mpi_comm_world
-
     call mpi_init(ierr)
     call assert_mpi_error('mpi_init', ierr)
 
-    call mpi_comm_size(this%comm, this%procs, ierr)
+    call mpi_comm_size(mpi_comm_world, this%procs, ierr)
     call assert_mpi_error('mpi_comm_size', ierr)
 
-    call mpi_comm_rank(this%comm, this%rank, ierr)
+    call mpi_comm_rank(mpi_comm_world, this%rank, ierr)
     call assert_mpi_error('mpi_comm_rank', ierr)
 
     this%is_root = this%rank == root_rank
@@ -55,7 +52,6 @@ module mpi_wrappers
     call mpi_finalize(ierr)
     call assert_mpi_error('mpi_finalize', ierr)
 
-    this%comm = -1
     this%rank = -1
     this%procs = -1
     this%is_root = .false.
@@ -66,7 +62,7 @@ module mpi_wrappers
 
     integer :: ierr
 
-    call mpi_barrier(this%comm, ierr)
+    call mpi_barrier(mpi_comm_world, ierr)
     call assert_mpi_error('mpi_barrier', ierr)
   end subroutine  
 
@@ -106,7 +102,7 @@ module mpi_wrappers
           mpi_double, &              ! data type
           operation, &               ! operation
           root_rank, &               ! root 
-          this%comm, &               ! communicator
+          mpi_comm_world, &               ! communicator
           ierr)                      ! error flag
     call assert_mpi_error('mpi_reduce', ierr)
     
