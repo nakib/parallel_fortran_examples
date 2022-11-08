@@ -30,7 +30,7 @@ export I_MPI_PMI_LIBRARY=/usr/lib64/libpmi.so # Depends on mashine. Find path: w
 export KMP_AFFINITY=scatter
 export OMP_NUM_THREADS=$num_threads
 
-time srun ../parallel_dot_mpi_omp_test.x > parallel_dot_caf_omp_test.out
+time srun ../parallel_dot_mpi_omp_test.x > parallel_dot_mpi_omp_test.out
 
 date
 

@@ -1,11 +1,11 @@
 #!/bin/bash
 
-workdir="./omp_1x4"
+workdir="./omp_1x36"
 mkdir $workdir
 cd $workdir
 
 let num_nodes=1
-let num_threads_per_node=4
+let num_threads_per_node=36
 let num_threads_tot=num_nodes*num_threads_per_node
 echo "Number of OMP threads: " $num_threads_per_node
 
