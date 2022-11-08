@@ -26,6 +26,7 @@ date;hostname;pwd
 
 module load intel-oneapi/2021.4.0
 
+export I_MPI_PMI_LIBRARY=/usr/lib64/libpmi.so # This depends on your mashine. Find path: >whereis libmpi.so 
 export FOR_COARRAY_NUM_IMAGES=$num_nodes
 export OMP_NUM_THREADS=$num_threads_per_node
 
