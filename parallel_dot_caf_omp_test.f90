@@ -30,8 +30,10 @@ program parallel_dot_caf_omp_test
 
   numerical_result = A*B !<~ OMP parallel dot product
   !Reduce from all images
+  sync all
   call co_sum(numerical_result)
-
+  sync all
+  
   analytical_result = (N + 1.0_dp)/N*(0.5_dp + (2.0_dp*N + 1.0_dp)/6.0_dp)
 
   if(this_image() ==  1) then
